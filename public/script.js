@@ -21,18 +21,18 @@ navigator.mediaDevices.getUserMedia({
     addVideoStream(myVideo, stream);
 
     myPeer.on('call', call =>{
+        if(confirm("Admin Receved Your Call \nAre You Ready to Continue?") == false)return false;
         const videos = document.createElement('video')
         videos.setAttribute('id','receved-video')
         call.answer(stream)         
         call.on('stream', (stream)=>{
             addVideoStream(videos,stream)
-        })
-        console.log('call Receved connectionId call.connectionId: ',call.connectionId)    
+        })  
     })
 
     socket.on('user-connected', userId =>{
         connecteToNewUser(userId, stream) 
-        console.log('connectedToNewUser: '+stream.id)       
+        console.log('connectedToNewUser: '+userId)       
     })
 });
 
@@ -46,6 +46,7 @@ myPeer.on('open',id=>{
 });
 
 function connecteToNewUser(userId, stream){
+    if(confirm('Someone is Calling You\nAre you ready to Receved the call from: \n'+userId) == false) return false;
     const call = myPeer.call(userId,stream)
     const video = document.createElement('video')
     video.setAttribute('id','receved-video')
@@ -54,7 +55,7 @@ function connecteToNewUser(userId, stream){
         // `stream` is the MediaStream of the remote peer.
         // Here you'd add it to an HTML video/canvas element.
         addVideoStream(video,stream)
-        console.log('Calling answerd from: '+stream.id)
+        console.log('Answerd from:'+userId);
         
     });
 

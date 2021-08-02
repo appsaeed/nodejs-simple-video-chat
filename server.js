@@ -34,7 +34,7 @@ const peerServer = PeerServer({
     port: 443, 
     path: '/' ,                   
 });
- 
 
 
-server.listen()
+
+server.listen(3000)
