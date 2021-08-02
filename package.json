@@ -1,10 +1,10 @@
 {
-  "name": "my-zoom-app",
+  "name": "zoom-app",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
